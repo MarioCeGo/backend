@@ -1,0 +1,63 @@
+.box {
+    &-product {
+        display: grid;
+        grid-template-areas: "title" "img" "price" "btn";
+        margin-bottom: 20px;
+        background-color: white;
+        height: 400px;
+        width: 300px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+
+        h3 {
+            grid-area: title;
+        }
+
+        img {
+            grid-area: img;
+            width: 100%;
+        }
+
+        p {
+            grid-area: price;
+
+        }
+
+        .buttons {
+            grid-area: btn;
+            display: flex;
+            width: 100%;
+        }
+
+        .info {
+            position: absolute;
+            background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 0) 50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-areas: "-" "title" "price" "btn";
+            grid-template-rows: 40% auto auto auto;
+            padding: 25px;
+            justify-items: center;
+            align-items: center;
+            color: white;
+            transition: all 500ms;
+            &:hover{
+                background-color: rgba(0, 0, 0, 0.1);
+                grid-template-rows: 60% auto auto auto;
+            }
+        }
+    }
+    &-msg{
+        background-color: #c8f0d1;
+        width: 400px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

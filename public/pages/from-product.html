@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+</head>
+<body>
+    <div class="container-nav">
+        <p>PageName</p>
+        <div class="container-nav-options">
+            <a href="../index.html">Home</a>
+            <a href="">Products</a>
+            <a href="">Contact</a>
+            <a href="">About Us</a>
+        </div>
+        <div class="container-user">
+            <img src="../src/img/interface/nav/user.svg" alt="">
+            <a href="form-user.html">User</a>
+        </div>
+        <div class="container-cart">
+            <img src="../src/img/interface/nav/cart.svg" alt="">
+        </div>
+    </div>
+    <h1>Register product</h1>
+    <div class="container-form-product">
+        <form action="/api/products" class="form-product" method="post">
+            <input type="text" name="productName" id="" placeholder="Product name" required>
+            <input type="text" name="productDescription" id="" placeholder="Description" required>
+            <div class="sector-product-code">
+                <input type="text" name="productCode" id="productCode" placeholder="Product code" required >
+                <button id="btnGenerateCode" class="btn-secundary2">Generate code</button>
+            </div>
+            <input type="text" name="productThumbnail" id="" placeholder="Thumbnail URL" required>
+            <input type="number" name="productPrice" id="" placeholder="Price" required>
+            <input type="number" name="productStock" id="" placeholder="Stock" required>
+            <button type="submit" class="btn-primary">Save</button>
+        </form>
+        <div class="container-warning">
+            <h3>Warning</h3>
+            <ul>
+                <li>Product name: no more than 20 characters</li>
+                <li>Description: no more than 100 characters</li>
+                <li>Code: no more than 50 characters</li>
+                <li>Thumbnail: recommended height 400px</li>
+            </ul>
+        </div>
+    </div>
+    <script src="../src/js/web-function/functions.js" type="module"></script>
+</body>
+</html>
