@@ -45,6 +45,21 @@ app.use("/info", (req, res) => {
     }
     res.send(info);
 })
+app.get("/api/randoms", (req, res) => {
+    const {cant} = req.query;
+    const subProcess = fork("./tareaFork");
+    subProcess.on("message", msg=>{
+        if (msg == 'listo') {
+            subProcess.send(cant ? cant : 100000000)
+        } else {
+            res.send(msg);
+        }
+    })
+})
+
+app.get("/", (req, res) =>{
+    res.redirect("/home")
+})
 app.use("/home", (req, res) => {
     const prods = generateRandomProduct();
     res.render("home",{prods})

@@ -7,9 +7,9 @@ const generateRandomCode = () => {
     for (let i = 0; i < 25; i++) {
 
         if (characters[randomNumber(characters.length-1)] == letters) {
-            randomNumber(1) ? code = code + letters[randomNumber(letters.length -1)].toUpperCase() : code = code + letters[randomNumber(letters.length -1)]
+            randomNumber(1) ? code += letters[randomNumber(letters.length -1)].toUpperCase() : code += letters[randomNumber(letters.length -1)]
         }else{
-            code = code + numbers[randomNumber(numbers.length -1)];
+            code += numbers[randomNumber(numbers.length -1)];
         }
     }
     return code

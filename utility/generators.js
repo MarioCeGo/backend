@@ -8,9 +8,9 @@ const generateRandomCode = () => {
     for (let i = 0; i < 50; i++) {
 
         if (characters[randomNumber(characters.length-1)] == letters) {
-            code = code + letters[randomNumber(letters.length -1)];
+            code += letters[randomNumber(letters.length -1)];
         }else{
-            code = code + numbers[randomNumber(numbers.length -1)];
+            code += numbers[randomNumber(numbers.length -1)];
         }
     }
     return code
