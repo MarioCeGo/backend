@@ -10,5 +10,4 @@ process.on('message', msg => {
     process.send(`El resultado es: ${cuenta(msg)}`);
     process.exit();
 })
-
 process.send('listo')

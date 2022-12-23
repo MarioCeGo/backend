@@ -32,6 +32,7 @@ const generateRandomProduct = () => {
             date: faker.date.recent(),
         })
     }
+    
     return product
 }
 

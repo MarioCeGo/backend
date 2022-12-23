@@ -32,7 +32,6 @@ app.use(express.static("public"));
 app.use("/api/products", routerProduct);
 app.use("/api/user", routerUser);
 
-
 app.use("/info", (req, res) => {
     const info = {
         inputArgs: args,
