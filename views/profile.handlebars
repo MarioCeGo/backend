@@ -1,3 +1,25 @@
-{{!-- <h1>{{user.name}}</h1> --}}
-{{user}}
-<a href="/api/user/logout">Logout</a>
+<div class="container-profile">
+    <div class="container-user-info">
+        <h2>Account Settings</h2>
+        <p><span>Name:</span> {{user.name}}</p>
+        <p><span>Last name:</span> {{user.lastName}}</p>
+        <p><span>Address:</span> {{user.address}}</p>
+        <p><span>Age:</span> {{user.age}}</p>
+        <p><span>Phone number:</span> {{user.phoneNumber}}</p>
+        <p><span>Email:</span> {{user.email}}</p>
+        <p><span>Password:</span> ********</p>
+    </div>
+    <div class="container-profile-nav">
+        <div class="container-profile-nav-avatar">
+            <img src="src/img/interface/userProfile.png" alt="">
+        </div>
+        <h3>{{user.username}}</h3>
+        <div class="container-profile-nav-options">
+            <p>Account</p>
+            <p>Purchase orders</p>
+            <p>Products</p>
+            <p>Settings</p>
+        </div>
+        <a href="/api/user/logout" class="btn-primary">Logout</a>
+    </div>
+</div>

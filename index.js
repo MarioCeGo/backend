@@ -91,20 +91,20 @@ app.get("/api/randoms", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    if(req.session.cart == undefined){
+    if (req.session.cart == undefined) {
         req.session.cart = [];
     }
     res.redirect("/home")
 });
 app.use("/home", async (req, res) => {
     const prods = await Product.find().lean()
-    if(req.session.cart == undefined){
+    if (req.session.cart == undefined) {
         req.session.cart = [];
     }
     try {
         const user = req.user;
-        const {username, isAdmin} = user;
-        res.render("home", { prods, username, isAdmin});
+        const { username, isAdmin } = user;
+        res.render("home", { prods, username, isAdmin });
     } catch (error) {
         res.render("home", { prods });
     }
@@ -119,21 +119,26 @@ app.use("/product", routerProduct, (req, res) => {
     }
 })
 
-app.use("/user", Authenticated,(req, res) => {
+app.use("/user", Authenticated, (req, res) => {
     res.render("user");
 });
 app.use("/login", (req, res) => {
     res.render("login");
 });
-app.use("/profile", (req, res) =>{
-    const user = req.user;
-    res.render("profile", {user});
+app.use("/profile", async (req, res) => {
+    try {
+        const username = req.user.username;
+        const user = await User.findById(req.user._id).lean();
+        res.render("profile", { user, username });
+    } catch (error) {
+        res.redirect("/user")
+    }
 });
-app.use("/cart",(req, res) =>{
+app.use("/cart", (req, res) => {
     try {
         const username = req.user.username;
         const cart = req.session.cart;
-        res.render("cart",{cart, username});
+        res.render("cart", { cart, username });
     } catch (error) {
         res.redirect("home");
     }

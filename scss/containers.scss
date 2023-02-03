@@ -32,6 +32,28 @@
             width: 24px;
             height: 24px;
         }
+        &-info{
+            margin-top: 50px;
+            padding-left: 15px;
+            grid-area: userInfo;
+            display: grid;
+            grid-template-areas: "title title"
+                                "name lastName"
+                                "address age"
+                                "phoneNumber email"
+                                "password password";
+            h2{
+                grid-area: title;
+            }
+            div{
+                display: flex;
+            }
+            p{
+                span{
+                    font-weight: bold;
+                }
+            }
+        }
     }
     &-cart{
         display: flex;
@@ -73,5 +95,54 @@
         display: flex;
         justify-content: space-evenly;
         
+    }
+    &-profile{
+        margin-left: 150px;
+        margin-right: 150px;
+        // padding: 15px;
+        display: grid;
+        grid-template-areas: "menuProfile userInfo";
+        grid-template-columns: 15% 85%;
+        background-color: white;
+        min-height: 500px;
+        &-nav{
+            display: grid;
+            grid-template-areas: "avatar"
+                                "username"
+                                "options"
+                                "btnLogout";
+            grid-area: menuProfile;
+            width: 100%;
+            border-right: 2px solid rgba(0, 0, 0, 0.1);
+            h3{
+                text-align: center;
+            }
+            &-avatar{
+                width: 100%;
+                padding: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 100%;
+                }
+            }
+            &-options{
+                display: flex;
+                flex-direction: column;
+                p{
+                    height: 50px;
+                    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+                    padding-left: 15px;
+                    transition: all 250ms;
+                    &:hover{
+                        background-color: #357edd;
+                        color: white;
+                    }
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
     }
 }
