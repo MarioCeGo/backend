@@ -23,6 +23,6 @@ ProductSchema.set("toJSON", {
         return resp;
     }
 });
-const product = mongoose.model(process.env.COLLECTION_PRODUCT, ProductSchema);
+const Product = mongoose.model(process.env.COLLECTION_PRODUCT, ProductSchema);
 
-export default product
+export default Product

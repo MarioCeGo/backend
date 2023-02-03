@@ -1,0 +1,13 @@
+{{#if cart.length}}
+<div class="container-cart-view">
+    {{#each cart}}
+    {{> boxes/boxCart this}}
+    {{/each}}
+</div>
+<a href="/api/cart/buy" class="btn-buy">Buy</a>
+{{else}}
+<a href="/home">Go to home</a>
+{{/if}}
+{{#if msg}}
+<p>{{msg}}</p>
+{{/if}}

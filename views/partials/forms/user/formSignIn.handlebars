@@ -1,8 +1,18 @@
-<form action="/api/user/signIn" method="post" class="form">
+<form action="/api/user/signIn" method="post" class="form" >
     <input type="text" name="username" id="" placeholder="Username">
     <input type="text" name="name" id="" placeholder="Name">
     <input type="text" name="lastName" id="" placeholder="Last Name">
+    <input type="text" name="address" id="" placeholder="Address">
+    <input type="number" name="age" id="" placeholder="Age">
+    <input id="phone" type="tel" name="phoneNumber" />
     <input type="email" name="email" id="" placeholder="example@example">
     <input type="password" name="password" id="" placeholder="Password">
     <button type="submit" class="btn-primary">Sign In</button>
 </form>
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+</script>

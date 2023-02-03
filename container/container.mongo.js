@@ -25,6 +25,8 @@ class containerMongoDB{
         const mongoID = mongoose.Types.ObjectId(id);
         await this.model.findByIdAndDelete(mongoID);
     }
+
+    
 }
 
 export default containerMongoDB

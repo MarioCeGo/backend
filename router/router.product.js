@@ -1,10 +1,11 @@
 import express from "express";
+import { IsAdmin } from "../middleware/authenticated.js";
 import product from "../models/product.model.js";
 
 const { Router } = express
 const routerProduct = Router();
 
-routerProduct.post("/", async (req, res) => {
+routerProduct.post("/", IsAdmin, async (req, res) => {
     try {
         const { productName, productDescription, productCode, productThumbnail, productPrice, productStock } = req.body
         const date = new Date();
@@ -18,15 +19,20 @@ routerProduct.post("/", async (req, res) => {
             stock: productStock,
             timeStamp
         };
-        console.log(prod)
         await product.create(prod);
-        res.sendStatus(200)
+        res.redirect("/product");
 
     } catch (error) {
         console.log("error")
         res.sendStatus(500)
     }
 
+});
+
+routerProduct.get("/item/:id", (req, res) => {
+    const id = req.params.id;
+    console.log("id")
+    res.send(id)
 })
 
 export default routerProduct

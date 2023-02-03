@@ -1,28 +1,39 @@
 import express from "express";
-import user from "../models/user.model.js";
+import User from "../models/user.model.js";
+import { Authenticated } from "../middleware/authenticated.js";
 
-const { Router } = express
+import passport from "passport";
+import { Strategy } from "passport-local"
+
+const { Router } = express;
 const routerUser = Router();
 
-routerUser.post("/signIn", async (req, res) => {
-    try {
-        const { username, name, lastName, email, password } = req.body;
-        const userObject = { username, name, lastName, email, password };
-        const usersList = await user.find();
-        if (usersList.length) {
-            await user.create(userObject);
-        } else {
-            userObject.isAdmin = true;
-            await user.create(userObject);
-        }
-        res.sendStatus(200)
-    } catch (error) {
-        res.sendStatus(500)
-    }
-});
-routerUser.get("/logIn", async (req, res) => {
-    const { email, password } = req.body;
 
+routerUser.post("/login", passport.authenticate("login", { failureRedirect: "/faillogin" }), (req, res) => {
+    res.redirect("/");
+}
+);
+routerUser.get("/login", Authenticated, (req, res) => {
+    console.log("llegue")
+    res.render("/");
 });
+
+routerUser.post("/signIn", passport.authenticate("signIn", { failureRedirect: "/failregister" }), (req, res) => {
+    res.redirect("/");
+}
+);
+
+routerUser.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/home");
+})
+
+routerUser.get("/:_id", Authenticated, (req, res) => {
+    const {_id} = req.params
+    const user = User.findById(_id)
+    console.log("hola")
+    res.render("user");
+});
+
 
 export default routerUser

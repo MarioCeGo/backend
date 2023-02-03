@@ -213,7 +213,12 @@ input[type=number] {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.411);
     padding-left: 15px;
-    font-size: 16px; }
+    font-size: 16px;
+    width: 100%; }
+  .form input[type=tel] {
+    margin-bottom: 10px !important; }
+  .form .iti__selected-flag {
+    padding: 0px 6px 10px 8px; }
   .form-product {
     display: flex;
     flex-direction: column;

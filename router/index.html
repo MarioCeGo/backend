@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="src/css/styles.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
@@ -28,6 +30,7 @@
             <img src="src/img/interface/nav/cart.svg" alt="">
         </div>
     </div>
+
     {{body}}
     <!-- <div class="container-content" id="prueba">
         <div class="box-product">
@@ -53,7 +56,17 @@
             </div>
         </div>
     </div> -->
+    <div class="container">
+        <form id="login" onsubmit="process(event)">
+            <p>Enter your phone number:</p>
+            <input id="phone" type="tel" name="phone" />
+            <input type="submit" class="btn" value="Verify" />
+        </form>
+    </div>
     <script src="src/js/server/index.js"></script>
+    <script>
+        
+    </script>
 </body>
 
 </html>

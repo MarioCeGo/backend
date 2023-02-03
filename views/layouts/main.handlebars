@@ -6,9 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eCommerce</title>
+    <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
     <link rel="stylesheet" href="src/css/styles.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+   
 </head>
 
 <body>
@@ -16,16 +22,22 @@
         <p>PageName</p>
         <div class="container-nav-options">
             <a href="/home">Home</a>
+            {{#if isAdmin}}
             <a href="/product">Products</a>
-            <a href="">Contact</a>
+            {{/if}}
+            <a href="/login">Contact</a>
             <a href="">About Us</a>
         </div>
         <div class="container-user">
             <img src="src/img/interface/nav/user.svg" alt="">
+            {{#if username}}
+            <a href="/user">{{username}}</a>
+            {{else}}
             <a href="/user">User</a>
+            {{/if}}
         </div>
         <div class="container-cart">
-            <img src="src/img/interface/nav/cart.svg" alt="">
+            <a href="/cart"><img src="src/img/interface/nav/cart.svg" alt=""></a>
         </div>
     </div>
     {{{body}}}

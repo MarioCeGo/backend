@@ -1,10 +1,13 @@
 <div class="container-login-signin">
-        <div>
-            <h3>Register</h3>
-            {{> forms/user/formSignIn}}
-        </div>
-        <div>
-            <h3>Log In</h3>
-            {{> forms/user/formLogIn}}
-        </div>
+    {{#if msg}}
+    <p>{{msg}}</p>
+    {{/if}}
+    <div>
+        <h3>Register</h3>
+        {{> forms/user/formSignIn}}
     </div>
+    <div>
+        <h3>Log In</h3>
+        {{> forms/user/formLogIn}}
+    </div>
+</div>
