@@ -2,13 +2,19 @@
     <div class="container-user-products">
         <h2>Products</h2>
         <div class="container-user-products-nav">
-            <a href=""><img src="/src/img/interface/addProd.svg" alt=""></a>
-            <a href=""><img src="/src/img/interface/listProd.svg" alt=""></a>
+            <a href="/profile/products?addProd=true"><img src="/src/img/interface/addProd.svg" alt=""
+                    class="filter-icon img-option"></a>
+            <a href="/profile/products?addProd=false"><img src="/src/img/interface/listProd.svg" alt=""
+                    class="filter-icon img-option"></a>
         </div>
         <div class="container-user-products-content">
+            {{#if addProd}}
+            {{> forms/formProduct}}
+            {{else}}
             {{#each prods}}
             {{> boxes/boxProdProfile this}}
             {{/each}}
+            {{/if}}
         </div>
     </div>
     <div class="container-profile-nav">
@@ -20,7 +26,7 @@
             <a href="/profile/account">Account</a>
             <a href="/profile/purchases">Purchase orders</a>
             {{#if user.isAdmin}}
-            <a href="/profile/products" class="enable">Products</a>
+            <a href="/profile/products?addProd=true" class="enable">Products</a>
             {{/if}}
             <a href="/profile/settings">Settings</a>
         </div>

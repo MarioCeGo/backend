@@ -1,6 +1,7 @@
 <div class="container-profile">
     <div class="container-user-info">
         <h2>Settings</h2>
+        <p>Nada todavia</p>
     </div>
     <div class="container-profile-nav">
         <div class="container-profile-nav-avatar">
@@ -11,7 +12,7 @@
             <a href="/profile/account">Account</a>
             <a href="/profile/purchases">Purchase orders</a>
             {{#if user.isAdmin}}
-            <a href="/profile/products">Products</a>
+            <a href="/profile/products?addProd=true">Products</a>
             {{/if}}
             <a href="/profile/settings" class="enable">Settings</a>
         </div>
