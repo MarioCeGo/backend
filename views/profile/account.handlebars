@@ -11,14 +11,16 @@
     </div>
     <div class="container-profile-nav">
         <div class="container-profile-nav-avatar">
-            <img src="src/img/interface/userProfile.png" alt="">
+            <img src="/src/img/interface/userProfile.png" alt="">
         </div>
         <h3>{{user.username}}</h3>
         <div class="container-profile-nav-options">
-            <p>Account</p>
-            <p>Purchase orders</p>
-            <p>Products</p>
-            <p>Settings</p>
+            <a href="/profile/account" class="enable">Account</a>
+            <a href="/profile/purchases">Purchase orders</a>
+            {{#if user.isAdmin}}
+            <a href="/profile/products">Products</a>
+            {{/if}}
+            <a href="/profile/settings">Settings</a>
         </div>
         <a href="/api/user/logout" class="btn-primary">Logout</a>
     </div>

@@ -62,6 +62,29 @@
                 }
             }
         }
+        &-products{
+            margin-top: 50px;
+            padding-left: 15px;
+            display: grid;
+            grid-template-areas: "title"
+                                "profileProdNav"
+                                "prodContent";
+            h2{
+                grid-area: title;
+            }
+            &-nav{
+                grid-area: profileProdNav;
+                a{
+                    img{
+                        // width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+            &-content{
+                grid-area: prodContent;
+            }
+        }
     }
 
     &-cart {
@@ -214,8 +237,7 @@
             &-options {
                 display: flex;
                 flex-direction: column;
-
-                p {
+                a{
                     height: 50px;
                     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
                     padding-left: 15px;

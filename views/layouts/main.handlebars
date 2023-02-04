@@ -10,7 +10,7 @@
      rel="stylesheet"
      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
    />
-    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="/src/css/styles.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
@@ -29,9 +29,9 @@
             <a href="">About Us</a>
         </div>
         <div class="container-user">
-            <img src="src/img/interface/nav/user.svg" alt="">
+            <img src="/src/img/interface/nav/user.svg" alt="">
             {{#if username}}
-            <a href="/user">{{username}}</a>
+            <a href="/profile/account">{{username}}</a>
             {{else}}
             <a href="/user">User</a>
             {{/if}}

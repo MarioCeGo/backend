@@ -1,0 +1,20 @@
+<div class="container-profile">
+    <div class="container-user-info">
+        <h2>Purchase orders</h2>
+    </div>
+    <div class="container-profile-nav">
+        <div class="container-profile-nav-avatar">
+            <img src="/src/img/interface/userProfile.png" alt="">
+        </div>
+        <h3>{{user.username}}</h3>
+        <div class="container-profile-nav-options">
+            <a href="/profile/account">Account</a>
+            <a href="/profile/purchases" class="enable">Purchase orders</a>
+            {{#if user.isAdmin}}
+            <a href="/profile/products">Products</a>
+            {{/if}}
+            <a href="/profile/settings">Settings</a>
+        </div>
+        <a href="/api/user/logout" class="btn-primary">Logout</a>
+    </div>
+</div>

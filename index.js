@@ -125,16 +125,47 @@ app.use("/user", Authenticated, (req, res) => {
 app.use("/login", (req, res) => {
     res.render("login");
 });
-app.use("/profile", async (req, res) => {
+
+
+app.use("/profile/account", async (req, res) => {
     try {
         const username = req.user.username;
         const user = await User.findById(req.user._id).lean();
-        res.render("profile", { user, username });
+        res.render("profile/account", { user, username });
     } catch (error) {
         res.redirect("/user")
     }
 });
-app.use("/cart", async (req, res) => {
+app.use("/profile/purchases", async (req, res) => {
+    try {
+        const username = req.user.username;
+        const user = await User.findById(req.user._id).lean();
+        res.render("profile/purchases", { user, username });
+    } catch (error) {
+        res.redirect("/user");
+    }
+});
+app.use("/profile/products", async (req, res) => {
+    try {
+        const username = req.user.username;
+        const user = await User.findById(req.user._id).lean();
+        const prods = await Product.find().lean()
+        res.render("profile/products", { user, username, prods });
+    } catch (error) {
+        res.redirect("/user");
+    }
+});
+app.use("/profile/settings", async (req, res) => {
+    try {
+        const username = req.user.username;
+        const user = await User.findById(req.user._id).lean();
+        res.render("profile/settings", { user, username });
+    } catch (error) {
+        res.redirect("/user");
+    }
+});
+
+app.use("/cart", (req, res) => {
     try {
         const username = req.user.username;
         const cart = req.session.cart;
