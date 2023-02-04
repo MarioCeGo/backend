@@ -147,14 +147,16 @@ app.use("/profile/purchases", async (req, res) => {
 });
 app.use("/profile/products", async (req, res) => {
     try {
+        const addProd = req.query.addProd === "true";
         const username = req.user.username;
         const user = await User.findById(req.user._id).lean();
         const prods = await Product.find().lean()
-        res.render("profile/products", { user, username, prods });
+        res.render("profile/products", { user, username, prods, addProd });
     } catch (error) {
         res.redirect("/user");
     }
 });
+
 app.use("/profile/settings", async (req, res) => {
     try {
         const username = req.user.username;
@@ -165,7 +167,7 @@ app.use("/profile/settings", async (req, res) => {
     }
 });
 
-app.use("/cart", (req, res) => {
+app.use("/cart", async (req, res) => {
     try {
         const username = req.user.username;
         const cart = req.session.cart;
