@@ -1,0 +1,29 @@
+<div class="container-profile">
+    <div class="container-user-products">
+        <h2>Products</h2>
+        <div class="container-user-products-nav">
+            <a href=""><img src="/src/img/interface/addProd.svg" alt=""></a>
+            <a href=""><img src="/src/img/interface/listProd.svg" alt=""></a>
+        </div>
+        <div class="container-user-products-content">
+            {{#each prods}}
+            {{> boxes/boxProdProfile this}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="container-profile-nav">
+        <div class="container-profile-nav-avatar">
+            <img src="/src/img/interface/userProfile.png" alt="">
+        </div>
+        <h3>{{user.username}}</h3>
+        <div class="container-profile-nav-options">
+            <a href="/profile/account">Account</a>
+            <a href="/profile/purchases">Purchase orders</a>
+            {{#if user.isAdmin}}
+            <a href="/profile/products" class="enable">Products</a>
+            {{/if}}
+            <a href="/profile/settings">Settings</a>
+        </div>
+        <a href="/api/user/logout" class="btn-primary">Logout</a>
+    </div>
+</div>

@@ -68,6 +68,19 @@ input[type=number] {
       display: flex; }
     .container-user-info p span {
       font-weight: bold; }
+  .container-user-products {
+    margin-top: 50px;
+    padding-left: 15px;
+    display: grid;
+    grid-template-areas: "title" "profileProdNav" "prodContent"; }
+    .container-user-products h2 {
+      grid-area: title; }
+    .container-user-products-nav {
+      grid-area: profileProdNav; }
+      .container-user-products-nav a img {
+        height: 30px; }
+    .container-user-products-content {
+      grid-area: prodContent; }
 
 .container-cart {
   display: flex;
@@ -132,14 +145,14 @@ input[type=number] {
     .container-profile-nav-options {
       display: flex;
       flex-direction: column; }
-      .container-profile-nav-options p {
+      .container-profile-nav-options a {
         height: 50px;
         border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         padding-left: 15px;
         transition: all 250ms;
         display: flex;
         align-items: center; }
-        .container-profile-nav-options p:hover {
+        .container-profile-nav-options a:hover {
           background-color: #357edd;
           color: white; }
 
@@ -252,6 +265,10 @@ input[type=number] {
   border-radius: 10px;
   border: 1px solid black;
   transition: all 500ms; }
+
+.enable {
+  background-color: #357edd;
+  color: white; }
 
 .form {
   display: flex;
