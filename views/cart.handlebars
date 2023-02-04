@@ -1,13 +1,37 @@
 {{#if cart.length}}
 <div class="container-cart-view">
-    {{#each cart}}
-    {{> boxes/boxCart this}}
-    {{/each}}
+    <div class="container-cart-products">
+        {{#each cart}}
+        {{> boxes/boxCart this}}
+        {{/each}}
+    </div>
+    <div class="container-cart-info">
+        <div class="container-cart-info-user">
+            <h2>Cart details</h2>
+            <p><span>Full name: </span>{{user.name}} {{user.lastName}}</p>
+            <p><span>Address: </span>{{user.address}}</p>
+            <p><span>Email: </span>{{user.email}}</p>
+            <p><span>Phone: </span>{{user.phoneNumber}}</p>
+        </div>
+        <div class="container-cart-info-order">
+            <div>
+                {{#each cart}}
+                <div class="container-cart-info-order-prod">
+                    <p>-{{this.name}}</p>
+                    <p>${{this.priceTotal}}</p>
+                </div>
+                {{/each}}
+            </div>
+            <div class="container-cart-info-order-total">
+                <span>Total:</span>
+                <span>${{total}}</span>
+            </div>
+        </div>
+        <a href="/api/cart/buy" class="btn-checkout">Checkout</a>
+    </div>
 </div>
-<a href="/api/cart/buy" class="btn-buy">Buy</a>
+
+
 {{else}}
 <a href="/home">Go to home</a>
-{{/if}}
-{{#if msg}}
-<p>{{msg}}</p>
 {{/if}}

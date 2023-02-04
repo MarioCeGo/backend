@@ -16,6 +16,8 @@ routerCart.get("/buy", (req, res)=>{
         sendSMS(req);
         req.session.cart = [];
         res.redirect("/home");
+        // res.status(200).send("ok");
+
     }else{
         res.redirect("/user");
     }

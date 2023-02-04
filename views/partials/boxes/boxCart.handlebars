@@ -1,7 +1,11 @@
-<div class="box-product">
-    <img src={{this.thumbnail}} alt="imagen del producto">
-    <div class="info">
+<div class="box-product-cart">
+    <img src={{this.thumbnail}} alt="imagen del producto" class="img-cart">
+    <div class="box-product-cart-info">
         <h3 class="title">{{this.name}}</h3>
         <p>${{this.price}}</p>
+        <p>Quantity: {{this.qty}}</p>
+    </div>
+    <div class="box-product-car-btn">
+        <a href="/cart"><img src="src/img/interface/box/cros.svg" alt="" class="filter-icon img-option"></a>
     </div>
 </div>

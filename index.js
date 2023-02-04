@@ -134,11 +134,16 @@ app.use("/profile", async (req, res) => {
         res.redirect("/user")
     }
 });
-app.use("/cart", (req, res) => {
+app.use("/cart", async (req, res) => {
     try {
         const username = req.user.username;
         const cart = req.session.cart;
-        res.render("cart", { cart, username });
+        const user = await User.findById(req.user._id).lean();
+        let total = 0;
+        cart.forEach(elem => {
+            total += elem.priceTotal;
+        })
+        res.render("cart", { cart, username, user, total });
     } catch (error) {
         res.redirect("home");
     }

@@ -1,5 +1,5 @@
-.container{
-    &-nav{
+.container {
+    &-nav {
         display: flex;
         width: 100%;
         height: 50px;
@@ -9,14 +9,16 @@
         align-items: center;
         justify-content: space-evenly;
         background-color: white;
-        &-options{
+
+        &-options {
             width: 50%;
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-evenly;
         }
     }
-    &-content{
+
+    &-content {
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
@@ -25,47 +27,120 @@
         padding-left: 150px;
         padding-right: 150px;
     }
-    &-user{
+
+    &-user {
         display: flex;
         align-items: center;
-        img{
+
+        img {
             width: 24px;
             height: 24px;
         }
-        &-info{
+
+        &-info {
             margin-top: 50px;
             padding-left: 15px;
             grid-area: userInfo;
             display: grid;
             grid-template-areas: "title title"
-                                "name lastName"
-                                "address age"
-                                "phoneNumber email"
-                                "password password";
-            h2{
+                "name lastName"
+                "address age"
+                "phoneNumber email"
+                "password password";
+
+            h2 {
                 grid-area: title;
             }
-            div{
+
+            div {
                 display: flex;
             }
-            p{
-                span{
+
+            p {
+                span {
                     font-weight: bold;
                 }
             }
         }
     }
-    &-cart{
+
+    &-cart {
         display: flex;
         align-items: center;
-        img{
+
+        img {
             width: 24px;
             height: 24px;
             opacity: 0.8;
         }
+
+        &-products {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-view {
+            display: grid;
+            grid-template-areas: "cartProducts cartInfo";
+            grid-template-columns: 70% auto;
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+
+        &-info {
+            width: 100%;
+            min-width: 300px;
+            height: 500px;
+            background-color: white;
+            border-radius: 5px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            display: grid;
+            grid-template-areas: "cartInfoUser"
+                "cartInfoOrder"
+                "btnCheckout";
+            grid-template-rows: auto auto 50px;
+
+            p {
+                span {
+                    font-weight: bold;
+                }
+                // display: flex;
+                // justify-content: space-between;
+            }
+
+            &-user {
+                h2 {
+                    margin-bottom: 15px;
+                }
+            }
+
+            &-order {
+                &-prod {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                &-total {
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        font-weight: bold;
+                    }
+                }
+                display: grid;
+                grid-template-areas: "orderProd"
+                                    "orderTotal";
+                grid-template-rows: auto 20px;
+            }
+        }
     }
-    &-form{
-        &-product{
+
+    &-form {
+        &-product {
             width: 100%;
             height: 100%;
             padding-left: 150px;
@@ -76,7 +151,8 @@
             align-items: center;
         }
     }
-    &-warning{
+
+    &-warning {
         margin-top: 50px;
         padding: 50px;
         padding-top: 25px;
@@ -85,18 +161,21 @@
         border-radius: 10px;
         border-top: 5px solid #ff8f39;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        h3{
+
+        h3 {
             display: flex;
             justify-content: center;
             margin-bottom: 25px;
         }
     }
-    &-login-signin{
+
+    &-login-signin {
         display: flex;
         justify-content: space-evenly;
-        
+
     }
-    &-profile{
+
+    &-profile {
         margin-left: 150px;
         margin-right: 150px;
         // padding: 15px;
@@ -105,40 +184,48 @@
         grid-template-columns: 15% 85%;
         background-color: white;
         min-height: 500px;
-        &-nav{
+
+        &-nav {
             display: grid;
             grid-template-areas: "avatar"
-                                "username"
-                                "options"
-                                "btnLogout";
+                "username"
+                "options"
+                "btnLogout";
             grid-area: menuProfile;
             width: 100%;
             border-right: 2px solid rgba(0, 0, 0, 0.1);
-            h3{
+
+            h3 {
                 text-align: center;
             }
-            &-avatar{
+
+            &-avatar {
                 width: 100%;
                 padding: 15px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                img{
+
+                img {
                     width: 100%;
                 }
             }
-            &-options{
+
+            &-options {
                 display: flex;
                 flex-direction: column;
-                p{
+
+                p {
                     height: 50px;
                     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
                     padding-left: 15px;
                     transition: all 250ms;
-                    &:hover{
+
+                    &:hover {
                         background-color: #357edd;
                         color: white;
                     }
+
                     display: flex;
                     align-items: center;
                 }
