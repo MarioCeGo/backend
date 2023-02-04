@@ -1,52 +1,41 @@
 import Product from "../models/product.model.js";
 
-
-
 class CartController {
     addItem(req, res) {
         const cart = req.session.cart;
         const code = req.params.code;
         Product.findOne({ code: code }).then((prod) => {
             if (prod) {
-                // if(this.checkInCart(cart, code)){
-                const prodToAdd = {
-                    id: prod._id,
-                    name: prod.name,
-                    description: prod.description,
-                    code: prod.code,
-                    thumbnail: prod.thumbnail,
-                    price: prod.price,
-                    priceTotal: prod.price,
-                    qty: 1
+                const prodFound = cart.find(elem => elem.code == code);
+                if (!prodFound) {
+                    const prodToAdd = {
+                        id: prod._id,
+                        name: prod.name,
+                        description: prod.description,
+                        code: prod.code,
+                        thumbnail: prod.thumbnail,
+                        price: prod.price,
+                        priceTotal: prod.price,
+                        qty: 1
+                    }
+                    cart.push(prodToAdd);
+                } else {
+                    const pos = cart.indexOf(prodFound);
+                    cart[pos].qty += 1;
+                    cart[pos].priceTotal = cart[pos].price * cart[pos].qty;
                 }
-                cart.push(prodToAdd);
-                // }
-                // }else{
-                //     const posProd = cart.indexOf(prod);
-                //     let prodInCart = cart[posProd];
-                //     prodInCart.qty ++;
-                //     prodInCart.priceTotal = prodInCart.qty * prodInCart.price;
-                //     cart[posProd].push(prodInCart);
             }
             req.session.cart = cart;
             res.redirect("/home");
-            // res.status(200).send("ok");
-            // req.session.msg = "Agregado a carrito"
-            // const msg = req.session.msg
-            // res.render("home", {msg})
-
         })
     }
-    checkInCart(cart, code) {
-        const bool = false;
-        cart.forEach(elem => {
-            if (elem.code == code) {
-                bool = true;
-            }
-        });
-    }
-    showCart(req, res) {
-
+    removeItem(req, res) {
+        const cart = req.session.cart;
+        const code = req.params.code;
+        const prodFound = cart.find(elem => elem.code == code);
+        const pos = cart.indexOf(prodFound);
+        cart.splice(pos, 1);
+        res.redirect("/cart");
     }
 }
 

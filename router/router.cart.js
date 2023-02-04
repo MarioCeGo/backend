@@ -8,6 +8,7 @@ const { Router } = express
 const routerCart = Router();
 
 routerCart.get("/add/:code", cart.addItem);
+routerCart.get("/remove/:code", cart.removeItem)
 
 routerCart.get("/buy", (req, res)=>{
     if(req.user){
@@ -16,6 +17,7 @@ routerCart.get("/buy", (req, res)=>{
         sendSMS(req);
         req.session.cart = [];
         res.redirect("/home");
+        
         // res.status(200).send("ok");
 
     }else{
