@@ -61,11 +61,7 @@ input[type=number] {
     padding-left: 15px;
     grid-area: userInfo;
     display: grid;
-    grid-template-areas: "title title"
- "name lastName"
- "address age"
- "phoneNumber email"
- "password password"; }
+    grid-template-areas: "title title" "name lastName" "address age" "phoneNumber email" "password password"; }
     .container-user-info h2 {
       grid-area: title; }
     .container-user-info div {
@@ -76,9 +72,7 @@ input[type=number] {
     margin-top: 50px;
     padding-left: 15px;
     display: grid;
-    grid-template-areas: "title"
- "profileProdNav"
- "prodContent"; }
+    grid-template-areas: "title" "profileProdNav" "prodContent"; }
     .container-user-products h2 {
       grid-area: title; }
     .container-user-products-nav {
@@ -115,9 +109,7 @@ input[type=number] {
     margin-top: 10px;
     padding: 15px;
     display: grid;
-    grid-template-areas: "cartInfoUser"
- "cartInfoOrder"
- "btnCheckout";
+    grid-template-areas: "cartInfoUser" "cartInfoOrder" "btnCheckout";
     grid-template-rows: auto auto 50px; }
     .container-cart-info p span {
       font-weight: bold; }
@@ -125,8 +117,7 @@ input[type=number] {
       margin-bottom: 15px; }
     .container-cart-info-order {
       display: grid;
-      grid-template-areas: "orderProd"
- "orderTotal";
+      grid-template-areas: "orderProd" "orderTotal";
       grid-template-rows: auto 20px; }
       .container-cart-info-order-prod {
         display: flex;
@@ -175,10 +166,7 @@ input[type=number] {
   min-height: 500px; }
   .container-profile-nav {
     display: grid;
-    grid-template-areas: "avatar"
- "username"
- "options"
- "btnLogout";
+    grid-template-areas: "avatar" "username" "options" "btnLogout";
     grid-area: menuProfile;
     width: 100%;
     border-right: 2px solid rgba(0, 0, 0, 0.1); }
