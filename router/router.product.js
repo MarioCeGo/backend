@@ -2,12 +2,12 @@ import express from "express";
 import { IsAdmin } from "../middleware/authenticated.js";
 import product from "../models/product.model.js";
 
-const { Router } = express
+const { Router } = express;
 const routerProduct = Router();
 
 routerProduct.post("/", IsAdmin, async (req, res) => {
     try {
-        const { productName, productDescription, productCode, productThumbnail, productPrice, productStock } = req.body
+        const { productName, productDescription, productCode, productThumbnail, productPrice, productStock } = req.body;
         const date = new Date();
         const timeStamp = date.toLocaleString();
         const prod = {
@@ -24,15 +24,15 @@ routerProduct.post("/", IsAdmin, async (req, res) => {
 
     } catch (error) {
         console.log("error")
-        res.sendStatus(500)
+        res.sendStatus(500);
     }
 
 });
 
 routerProduct.get("/item/:id", (req, res) => {
     const id = req.params.id;
-    console.log("id")
-    res.send(id)
+    console.log("id");
+    res.send(id);
 })
 
 export default routerProduct

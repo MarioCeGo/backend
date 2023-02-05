@@ -1,7 +1,7 @@
 const Authenticated = (req, res, next) => {
 
     if (req.isAuthenticated()) {
-        res.redirect(`/profile`);
+        res.redirect("profile");
     }else{
         next();
     }

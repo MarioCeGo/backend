@@ -4,7 +4,6 @@ import { fileURLToPath } from "url";
 import { engine } from "express-handlebars";
 import { Server as IOServer } from "socket.io";
 import { Server as HttpServer } from "http";
-import { generateRandomProduct } from "./utility/generators.js";
 import routerProduct from "./router/router.product.js";
 import routerUser from "./router/router.user.js";
 import { MonogDB } from "./servers/mongoDB.js";
@@ -24,11 +23,12 @@ import { Authenticated } from "./middleware/authenticated.js";
 import Product from "./models/product.model.js";
 import CartController from "./controllers/cart.controllers.js";
 import routerCart from "./router/router.cart.js";
+import routerProfile from "./router/router.profile.js";
 
-const cart = new CartController();
 dotenv.config();
 MonogDB.init();
 
+const cart = new CartController();
 const args = parseArgs(process.argv.slice(2));
 const app = express();
 const PORT = process.env.PORT || args.PORT;
@@ -42,7 +42,6 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 app.use(express.static("public"));
-
 app.use(cookieParser());
 app.use(
     session({
@@ -64,6 +63,7 @@ app.use(passport.session())
 app.use("/api/products", routerProduct);
 app.use("/api/user", routerUser);
 app.use("/api/cart", routerCart);
+app.use("/profile", routerProfile);
 
 
 app.use("/info", (req, res) => {
@@ -126,57 +126,17 @@ app.use("/login", (req, res) => {
     res.render("login");
 });
 
-
-app.use("/profile/account", async (req, res) => {
-    try {
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        res.render("profile/account", { user, username });
-    } catch (error) {
-        res.redirect("/user")
-    }
-});
-app.use("/profile/purchases", async (req, res) => {
-    try {
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        const { orderID } = req.query;
-        if (orderID) {
-            const purchaseOrder = user.purchaseOrders.find(elem => elem.id == orderID).items;
-            let total = 0;
-            purchaseOrder.forEach(elem => {
-                total += elem.priceTotal;
-            })
-            console.log(purchaseOrder)
-            res.render("profile/purchases", { user, username, orderID, purchaseOrder, total });
-        } else {
-            res.render("profile/purchases", { user, username, orderID });
-        }
-    } catch (error) {
-        res.redirect("/user");
-    }
-});
-app.use("/profile/products", async (req, res) => {
-    try {
-        const addProd = req.query.addProd === "true";
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        const prods = await Product.find().lean()
-        res.render("profile/products", { user, username, prods, addProd });
-    } catch (error) {
-        res.redirect("/user");
-    }
-});
-
-app.use("/profile/settings", async (req, res) => {
-    try {
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        res.render("profile/settings", { user, username });
-    } catch (error) {
-        res.redirect("/user");
-    }
-});
+// app.use("/profile/products", async (req, res) => {
+//     try {
+//         const addProd = req.query.addProd === "true";
+//         const username = req.user.username;
+//         const user = await User.findById(req.user._id).lean();
+//         const prods = await Product.find().lean()
+//         res.render("profile/products", { user, username, prods, addProd });
+//     } catch (error) {
+//         res.redirect("/user");
+//     }
+// });
 
 app.use("/cart", async (req, res) => {
     try {
