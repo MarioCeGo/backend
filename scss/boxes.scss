@@ -100,6 +100,15 @@
         justify-content: center;
         align-items: center;
     }
+    &-total{
+        &-purchase{
+            display: grid;
+            height: 50px;
+            align-items: center;
+            grid-template-areas: "word space number";
+            grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
+        }
+    }
 }
 
 .img {

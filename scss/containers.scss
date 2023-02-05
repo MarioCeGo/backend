@@ -73,7 +73,6 @@
                 "profileProdNav"
                 "prodContent";
             grid-template-rows: 50px 50px auto;
-
             h2 {
                 grid-area: title;
             }
@@ -86,7 +85,20 @@
 
             &-content {
                 grid-area: prodContent;
+                max-height: 670px;
+                overflow-y: scroll;
             }
+        }
+        &-purchase{
+            margin-top: 50px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-bottom: 15px;
+            display: grid;
+            grid-template-areas: "title"
+                "orderID"
+                "orderItems";
+            grid-template-rows: 50px 50px auto;
         }
     }
 
@@ -224,6 +236,7 @@
             width: 100%;
             border-right: 2px solid rgba(0, 0, 0, 0.1);
             grid-template-rows: 150px 35px auto 50px;
+            max-height: 830px;
             h3 {
                 text-align: center;
             }

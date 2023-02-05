@@ -1,6 +1,21 @@
 <div class="container-profile">
-    <div class="container-user-info">
+    <div class="container-user-purchase">
         <h2>Purchase orders</h2>
+        {{#if orderID}}
+        <h4>Order: {{orderID}}</h4>
+        {{#each purchaseOrder}}
+        {{> boxes/boxProdPurchase this}}
+        {{/each}}
+        <div class="box-total-purchase">
+            <h4>Total: </h4>
+            <div></div>
+            <p>${{total}}</p>
+        </div>
+        {{else}}
+        {{#each user.purchaseOrders}}
+        <a href="/profile/purchases?orderID={{this.id}}">Order: {{this.id}}</a>
+        {{/each}}
+        {{/if}}
     </div>
     <div class="container-profile-nav">
         <div class="container-profile-nav-avatar">

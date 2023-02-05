@@ -20,7 +20,7 @@ routerProduct.post("/", IsAdmin, async (req, res) => {
             timeStamp
         };
         await product.create(prod);
-        res.redirect("/product");
+        res.redirect("/profile/products?addProd=true");
 
     } catch (error) {
         console.log("error")

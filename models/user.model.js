@@ -13,7 +13,8 @@ const UserSchema = new Schema({
     phoneNumber: { type: Number, required: true, trim: true },
     email: { type: String, required: true, unique: true,  trim: true, index: true },
     password: { type: String, required: true },
-    isAdmin: { type: Boolean, default: false }
+    isAdmin: { type: Boolean, default: false },
+    purchaseOrders:{ type: Array }
 })
 UserSchema.pre('save', async function(next) {
     if (this.password) {

@@ -140,7 +140,18 @@ app.use("/profile/purchases", async (req, res) => {
     try {
         const username = req.user.username;
         const user = await User.findById(req.user._id).lean();
-        res.render("profile/purchases", { user, username });
+        const { orderID } = req.query;
+        if (orderID) {
+            const purchaseOrder = user.purchaseOrders.find(elem => elem.id == orderID).items;
+            let total = 0;
+            purchaseOrder.forEach(elem => {
+                total += elem.priceTotal;
+            })
+            console.log(purchaseOrder)
+            res.render("profile/purchases", { user, username, orderID, purchaseOrder, total });
+        } else {
+            res.render("profile/purchases", { user, username, orderID });
+        }
     } catch (error) {
         res.redirect("/user");
     }
