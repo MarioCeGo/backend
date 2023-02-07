@@ -1,0 +1,10 @@
+.img {
+    &-cart {
+        &-checkout {
+            filter: invert(1);
+            width: 20px;
+            height: 20px;
+            // position: absolute;
+        }
+    }
+}

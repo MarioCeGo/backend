@@ -354,12 +354,22 @@ input[type=number] {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all 500ms; }
+  transition: all 500ms;
+  overflow: hidden; }
+  .btn-checkout img {
+    grid-area: space2; }
+  .btn-checkout p {
+    margin-right: 50%;
+    margin-left: 50%;
+    transition: all 500ms ease-out 250ms; }
   .btn-checkout:hover {
     background-color: #3d3d3d;
     border-radius: 5px; }
+    .btn-checkout:hover p {
+      margin-right: 0%;
+      margin-left: 0%; }
 
-.btn-secundary {
+@keyframes imgCheckout {}.btn-secundary {
   background: none;
   border: none;
   color: white;
@@ -434,3 +444,8 @@ input[type=number] {
 .sector-product-code {
   display: grid;
   grid-template-columns: 80% auto; }
+
+.img-cart-checkout {
+  filter: invert(1);
+  width: 20px;
+  height: 20px; }

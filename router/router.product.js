@@ -21,12 +21,10 @@ routerProduct.post("/", IsAdmin, async (req, res) => {
         };
         await product.create(prod);
         res.redirect("/profile/products?addProd=true");
-
     } catch (error) {
         console.log("error")
         res.sendStatus(500);
     }
-
 });
 
 routerProduct.get("/item/:id", (req, res) => {

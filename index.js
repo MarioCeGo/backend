@@ -19,7 +19,7 @@ import { Strategy } from "passport-local"
 import MongoStore from "connect-mongo";
 import * as strategy from "./passport/strategy.js"
 import User from "./models/user.model.js";
-import { Authenticated } from "./middleware/authenticated.js";
+import { Authenticated, IsAdmin } from "./middleware/authenticated.js";
 import Product from "./models/product.model.js";
 import CartController from "./controllers/cart.controllers.js";
 import routerCart from "./router/router.cart.js";
@@ -65,31 +65,6 @@ app.use("/api/user", routerUser);
 app.use("/api/cart", routerCart);
 app.use("/profile", routerProfile);
 
-
-app.use("/info", (req, res) => {
-    const info = {
-        inputArgs: args,
-        OS: process.platform,
-        nodeV: process.version,
-        memoryRSS: process.memoryUsage().rss,
-        path: process.execPath,
-        pID: process.pid,
-        dirname: process.cwd()
-    }
-    res.send(info);
-});
-app.get("/api/randoms", (req, res) => {
-    const { cant } = req.query;
-    const subProcess = fork("./tareaFork");
-    subProcess.on("message", msg => {
-        if (msg == 'listo') {
-            subProcess.send(cant ? cant : 100000000)
-        } else {
-            res.send(msg);
-        }
-    })
-});
-
 app.get("/", (req, res) => {
     if (req.session.cart == undefined) {
         req.session.cart = [];
@@ -108,8 +83,8 @@ app.use("/home", async (req, res) => {
     } catch (error) {
         res.render("home", { prods });
     }
-
 });
+
 app.use("/product", routerProduct, (req, res) => {
     try {
         const username = req.user.username;
@@ -126,17 +101,17 @@ app.use("/login", (req, res) => {
     res.render("login");
 });
 
-// app.use("/profile/products", async (req, res) => {
-//     try {
-//         const addProd = req.query.addProd === "true";
-//         const username = req.user.username;
-//         const user = await User.findById(req.user._id).lean();
-//         const prods = await Product.find().lean()
-//         res.render("profile/products", { user, username, prods, addProd });
-//     } catch (error) {
-//         res.redirect("/user");
-//     }
-// });
+app.use("/profile/products", IsAdmin, async (req, res) => {
+    try {
+        const addProd = req.query.addProd === "true";
+        const username = req.user.username;
+        const user = await User.findById(req.user._id).lean();
+        const prods = await Product.find().lean()
+        res.render("profile/products", { user, username, prods, addProd });
+    } catch (error) {
+        res.redirect("/user");
+    }
+});
 
 app.use("/cart", async (req, res) => {
     try {
@@ -158,7 +133,6 @@ passport.use("signIn", new Strategy({ passReqToCallback: true }, strategy.signIn
 passport.serializeUser((user, done) => {
     done(null, user._id);
 });
-
 passport.deserializeUser((id, done) => {
     User.findById(id, function (err, user) {
         done(err, user);

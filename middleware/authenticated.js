@@ -1,12 +1,10 @@
 const Authenticated = (req, res, next) => {
-
-    if (req.isAuthenticated()) {
-        res.redirect("profile");
-    }else{
-        next();
-    }
-
-    
+    req.isAuthenticated() ? res.redirect("profile") : next();
+    // if (req.isAuthenticated()) {
+    //     res.redirect("profile");
+    // }else{
+    //     next();
+    // }
 }
 const IsAdmin = (req, res, next) => {
     const bool = req.user.isAdmin;

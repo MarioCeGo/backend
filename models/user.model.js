@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
     purchaseOrders:{ type: Array }
-})
+});
 UserSchema.pre('save', async function(next) {
     if (this.password) {
         const hash = await bcrypt.hash(this.password, 10);
@@ -26,4 +26,4 @@ UserSchema.pre('save', async function(next) {
 
 const User = mongoose.model(process.env.COLLECTION_USER, UserSchema);
 
-export default User
+export default User;

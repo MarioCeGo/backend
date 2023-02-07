@@ -13,8 +13,7 @@ const ProductSchema = new Schema({
     timeStamp: {type: String, required: true, max: 20},
 },{
     virtuals: true
-}
-);
+});
 
 ProductSchema.set("toJSON", {
     transform: (_, resp) =>{
@@ -25,4 +24,4 @@ ProductSchema.set("toJSON", {
 });
 const Product = mongoose.model(process.env.COLLECTION_PRODUCT, ProductSchema);
 
-export default Product
+export default Product;
