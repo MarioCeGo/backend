@@ -11,12 +11,12 @@ const UserSchema = new Schema({
     address: { type: String, required: true, trim: true },
     age: { type: Number, required: true, trim: true },
     phoneNumber: { type: Number, required: true, trim: true },
-    email: { type: String, required: true, unique: true,  trim: true, index: true },
+    email: { type: String, required: true, unique: true, trim: true, index: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
-    purchaseOrders:{ type: Array }
+    purchaseOrders: { type: Array }
 });
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
     if (this.password) {
         const hash = await bcrypt.hash(this.password, 10);
         this.password = hash;
@@ -26,4 +26,4 @@ UserSchema.pre('save', async function(next) {
 
 const User = mongoose.model(process.env.COLLECTION_USER, UserSchema);
 
-export default User;
+export { User };

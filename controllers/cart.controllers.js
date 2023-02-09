@@ -1,42 +1,58 @@
-import Product from "../models/product.model.js";
+import { servicesCart } from "../services/index.js";
 
-class CartController {
-    addItem(req, res) {
+const addItem = async (req, res) => {
+    try {
         const cart = req.session.cart;
         const code = req.params.code;
-        Product.findOne({ code: code }).then((prod) => {
-            if (prod) {
-                const prodFound = cart.find(elem => elem.code == code);
-                if (!prodFound) {
-                    const prodToAdd = {
-                        id: prod._id,
-                        name: prod.name,
-                        description: prod.description,
-                        code: prod.code,
-                        thumbnail: prod.thumbnail,
-                        price: prod.price,
-                        priceTotal: prod.price,
-                        qty: 1
-                    }
-                    cart.push(prodToAdd);
-                } else {
-                    const pos = cart.indexOf(prodFound);
-                    cart[pos].qty += 1;
-                    cart[pos].priceTotal = cart[pos].price * cart[pos].qty;
-                }
-            }
-            req.session.cart = cart;
-            res.redirect("/home");
-        })
+        req.session.cart = await servicesCart.addToCart(code, cart);
+        res.redirect("/home");
+    } catch (error) {
+        console.log(`Error: ${error}`);
+        res.status(500);
     }
-    removeItem(req, res) {
+
+}
+const removeItem = async (req, res) => {
+    try {
         const cart = req.session.cart;
         const code = req.params.code;
-        const prodFound = cart.find(elem => elem.code == code);
-        const pos = cart.indexOf(prodFound);
-        cart.splice(pos, 1);
+        await servicesCart.removeFromCart(code, cart);
         res.redirect("/cart");
+    } catch (error) {
+        console.log(`Error: ${error}`);
+        res.status(500);
+    }
+}
+const checkout = async (req, res) => {
+    try {
+        if (req.user) {
+            const cart = req.session.cart;
+            const user = req.user;
+            await servicesCart.buy(cart, user);
+            req.session.cart = [];
+            res.redirect("/home");
+        } else {
+            res.redirect("/user");
+        }
+    } catch (error) {
+        console.log(`Error ${error}`);
+        res.status(500);
+    }
+}
+const viewCart = async (req, res) => {
+    try {
+        if (req.user) {
+            const { username, _id } = req.user;
+            const cart = req.session.cart;
+            const { total, user } = await servicesCart.auxViewCart(_id, cart);
+            res.render("cart", { username, user, cart, total });
+        } else {
+            res.redirect("user");
+        }
+    } catch (error) {
+        console.log(`Error: ${error}`);
+        res.status(500);
     }
 }
 
-export default CartController
+export { addItem, removeItem, checkout, viewCart };

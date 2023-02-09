@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import { User } from "../models/index.js";
 import bcrypt from "bcrypt";
 import { sendEmailSignUp } from "../utility/services.js";
 
@@ -34,12 +34,12 @@ const signIn = (req, username, password, done) => {
                 if (userList.length) {
                     const { username, name, lastName, address, age, phoneNumber, email, password } = req.body;
                     User.create({ username, name, lastName, address, age, phoneNumber, email, password });
-                    sendEmailSignUp(username, name, lastName, address, age, phoneNumber, email);
+                    // sendEmailSignUp(username, name, lastName, address, age, phoneNumber, email);
                 }else{
                     const { username, name, lastName, address, age, phoneNumber, email, password } = req.body;
                     const isAdmin = true;
                     User.create({ username, name, lastName, address, age, phoneNumber, email, password, isAdmin });
-                    sendEmailSignUp({ username, name, lastName, address, age, phoneNumber, email});
+                    // sendEmailSignUp({ username, name, lastName, address, age, phoneNumber, email});
                 }
             }
         })

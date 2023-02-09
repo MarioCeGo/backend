@@ -1,60 +1,18 @@
 import express from "express";
-import User from "../models/user.model.js";
+import { profileControllers } from "../controllers/index.js";
+import { User, Product } from "../models/index.js";
 
 const { Router } = express;
 const routerProfile = Router();
 
-routerProfile.get("/", (req, res) => {
-    res.redirect("profile/account");
-});
-routerProfile.get("/account", async (req, res) => {
-    try {
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        res.render("profile/account", { user, username });
-    } catch (error) {
-        res.redirect("/user")
-    }
-});
-routerProfile.all("/purchases", async (req, res) => {
-    try {
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        const { orderID } = req.query;
-        if (orderID) {
-            const purchaseOrder = user.purchaseOrders.find(elem => elem.id == orderID).items;
-            let total = 0;
-            purchaseOrder.forEach(elem => {
-                total += elem.priceTotal;
-            })
-            res.render("profile/purchases", { user, username, orderID, purchaseOrder, total });
-        } else {
-            res.render("profile/purchases", { user, username, orderID });
-        }
-    } catch (error) {
-        res.redirect("/user");
-    }
-});
-// routerProfile.all("/products", async (req, res) => {
-//     try {
-//         const addProd = req.query.addProd === "true";
-//         const username = req.user.username;
-//         const user = await User.findById(req.user._id).lean();
-//         const prods = await Product.find().lean()
-//         res.render("profile/products", { user, username, prods, addProd });
-//     } catch (error) {
-//         res.redirect("/user");
-//     }
-// });
+routerProfile.get("/", profileControllers.goToProfile);
 
-routerProfile.get("/settings", async (req, res) => {
-    try {
-        const username = req.user.username;
-        const user = await User.findById(req.user._id).lean();
-        res.render("profile/settings", { user, username });
-    } catch (error) {
-        res.redirect("/user");
-    }
-});
+routerProfile.get("/account", profileControllers.viewAccount);
 
-export default routerProfile
+routerProfile.all("/purchases", profileControllers.viewPurchases);
+
+routerProfile.get("/settings", profileControllers.viewSettings);
+
+routerProfile.get("/products", profileControllers.viewProducts);
+
+export { routerProfile }
