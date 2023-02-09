@@ -6,5 +6,6 @@ const { Router } = express;
 const apiProduct = Router();
 
 apiProduct.post("/", IsAdmin, productControllers.setProd);
+apiProduct.get("/delete", IsAdmin, productControllers.deleteProd);
 
 export { apiProduct }

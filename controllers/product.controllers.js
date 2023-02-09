@@ -1,4 +1,4 @@
-import {servicesProduct} from "../services/index.js";
+import { servicesProduct } from "../services/index.js";
 
 const setProd = async (req, res) => {
     try {
@@ -18,5 +18,8 @@ const setProd = async (req, res) => {
         res.sendStatus(500);
     }
 }
+const deleteProd = async (req, res) => {
+    servicesProduct.deleteProd(req.query.prodCode);
+}
 
-export { setProd };
+export { setProd, deleteProd };

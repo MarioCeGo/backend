@@ -1,6 +1,8 @@
 import { User, Product } from "../models/index.js";
 import { generateRandomCode } from "../utility/generators.js"
-import { sendMailCart, sendSMS } from "../utility/services.js";
+import { sendMailCart, sendSMS } from "../utility/services.js"; 
+import { userDao } from "../DAO/UserDao.js";
+
 
 const addToCart = async (code, cart) => {
     const prod = await Product.findOne({ code: code });
@@ -53,7 +55,7 @@ const updateStock = (cart) => {
 }
 
 const auxViewCart = async (id, cart) => {
-    const user = await User.findById(id).lean();
+    const user = await userDao.getInfoBill(id);
     let total = 0;
     cart.forEach(elem => total += elem.priceTotal);
     return { total, user }

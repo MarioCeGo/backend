@@ -1,11 +1,15 @@
-import { Product } from "../models/index.js";
+import { productDao } from "../DAO/ProductDao.js";
 
 const addNewProd = async (prod) => {
     const date = new Date();
     const timeStamp = date.toLocaleString();
     prod.timeStamp = timeStamp;
     console.log(prod)
-    await Product.create(prod);
+    await productDao.save(prod);
 }
 
-export { addNewProd };
+const deleteProd = async (code) => {
+    await productDao.deleteProd(code);
+}
+
+export { addNewProd, deleteProd };
