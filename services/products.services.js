@@ -4,7 +4,6 @@ const addNewProd = async (prod) => {
     const date = new Date();
     const timeStamp = date.toLocaleString();
     prod.timeStamp = timeStamp;
-    console.log(prod)
     await productDao.save(prod);
 }
 
@@ -12,4 +11,13 @@ const deleteProd = async (code) => {
     await productDao.deleteProd(code);
 }
 
-export { addNewProd, deleteProd };
+const detailProd = async (code) => {
+    const prod = await productDao.getByCode(code);
+    return prod
+}
+
+const updateProd = async (code, newProd) =>{
+    await productDao.updateProd(code, newProd);
+}
+
+export { addNewProd, deleteProd, detailProd, updateProd };

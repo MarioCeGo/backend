@@ -4,9 +4,13 @@
         <h3 class="title">{{this.name}}</h3>
         <p>${{this.price}}</p>
         <div class="buttons">
+            {{#if this.stock}}
             <button class="btn-secundary">Ver más</button>
             <a href="/api/cart/add/{{this.code}}" class="btn-buy">Comprar</a>
-            
+            {{else}}
+            <button class="btn-secundary">Ver más</button>
+            <p class="btn-disable"> Not available</p>
+            {{/if}}
         </div>
     </div>
 </div>

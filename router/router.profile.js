@@ -15,4 +15,6 @@ routerProfile.get("/settings", profileControllers.viewSettings);
 
 routerProfile.get("/products", profileControllers.viewProducts);
 
+routerProfile.all("/product/detail", )
+
 export { routerProfile }

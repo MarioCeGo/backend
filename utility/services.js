@@ -52,7 +52,7 @@ const sendMailCart = async (req) => {
     await transporter.sendMail(mailOptions)
 }
 
-const client = twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+// const client = twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 const sendSMS = async (req) => {
     const cart = req.session.cart;

@@ -19,7 +19,22 @@ const setProd = async (req, res) => {
     }
 }
 const deleteProd = async (req, res) => {
-    servicesProduct.deleteProd(req.query.prodCode);
+    try {
+        servicesProduct.deleteProd(req.query.prodCode);
+        res.redirect("/profile/products?addProd=false");
+    } catch (error) {
+        console.log(`Error ${error}`);
+        res.status(500);
+    }
+}
+const detailProd = async (req, res) => {
+    try {
+        const prod = await servicesProduct.detailProd(req.query.productCode);
+        res.render("/product/edit")
+    } catch (error) {
+        console.log(`Error: ${error}`);
+        res.status(500);
+    }
 }
 
-export { setProd, deleteProd };
+export { setProd, deleteProd, detailProd };

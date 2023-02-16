@@ -375,6 +375,7 @@ input[type=number] {
   color: white;
   cursor: pointer;
   width: 50%;
+  height: 50px;
   font-size: 16px;
   border-radius: 10px;
   border: 1px solid white;
@@ -393,6 +394,19 @@ input[type=number] {
   border-radius: 10px;
   border: 1px solid black;
   transition: all 500ms; }
+
+.btn-disable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  width: 50%;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid white; }
 
 .enable {
   background-color: #357edd;

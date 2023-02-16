@@ -5,13 +5,16 @@ class ProductDao {
         this.model = model;
     }
     async getByCode(code) {
-        return await this.model.findOne({ code: code });
+        return await this.model.findOne(code);
     }
     async save(prod) {
         await this.model.create(prod);
     }
     async deleteProd(code) {
         await this.model.deleteOne({ code: code });
+    }
+    async updateProd(code, newProd) {
+        await this.model.updateOne({ code: code }, newProd);
     }
 }
 

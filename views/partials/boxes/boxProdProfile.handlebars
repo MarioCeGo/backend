@@ -2,4 +2,6 @@
     <p>Product: {{this.name}}</p>
     <p>Stock: {{this.stock}}</p>
     <p>${{this.price}}</p>
+    <a href="/api/products/delete?prodCode={{this.code}}">Delete</a>
+    <a href="/api/products/detailProd?prodCode={{this.code}}">Edit</a>
 </div>
