@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/axios.test.js ",
+    "supertest": "mocha test/super.test.js",
     "build-css": "node-sass --include-path scss scss/main.scss public/src/css/styles.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
@@ -13,7 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
+    "axios": "^1.3.3",
     "bcrypt": "^5.1.0",
+    "chai": "^4.3.7",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
@@ -21,6 +24,7 @@
     "express-handlebars": "^6.0.7",
     "express-session": "^1.17.3",
     "minimist": "^1.2.7",
+    "mocha": "^10.2.0",
     "mongoose": "^6.9.1",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
@@ -28,6 +32,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "socket.io": "^4.6.0",
+    "supertest": "^6.3.3",
     "twilio": "^3.84.1",
     "util": "^0.12.5"
   },

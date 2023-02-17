@@ -19,5 +19,8 @@ const detailProd = async (code) => {
 const updateProd = async (code, newProd) =>{
     await productDao.updateProd(code, newProd);
 }
+const getProducts = async () => {
+    return await productDao.getAll();
+}
 
-export { addNewProd, deleteProd, detailProd, updateProd };
+export { addNewProd, deleteProd, detailProd, updateProd, getProducts };

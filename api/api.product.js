@@ -5,8 +5,10 @@ import express from "express";
 const { Router } = express;
 const apiProduct = Router();
 
-apiProduct.post("/", IsAdmin, productControllers.setProd);
-apiProduct.get("/delete", IsAdmin, productControllers.deleteProd);
+apiProduct.post("/", productControllers.setProd);
+apiProduct.get("/delete", productControllers.deleteProd);
 apiProduct.get("/detailProd", IsAdmin, productControllers.detailProd);
+apiProduct.get("/getAll", productControllers.getAll);
+
 
 export { apiProduct }

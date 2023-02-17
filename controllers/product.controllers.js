@@ -12,7 +12,7 @@ const setProd = async (req, res) => {
             stock: productStock
         };
         await servicesProduct.addNewProd(prod);
-        res.redirect("/profile/products?addProd=true");
+        res.sendStatus(200).redirect("/profile/products?addProd=true");
     } catch (error) {
         console.log(`Error ${error}`);
         res.sendStatus(500);
@@ -21,7 +21,7 @@ const setProd = async (req, res) => {
 const deleteProd = async (req, res) => {
     try {
         servicesProduct.deleteProd(req.query.prodCode);
-        res.redirect("/profile/products?addProd=false");
+        res.sendStatus(200).redirect("/profile/products?addProd=false");
     } catch (error) {
         console.log(`Error ${error}`);
         res.status(500);
@@ -36,5 +36,13 @@ const detailProd = async (req, res) => {
         res.status(500);
     }
 }
+const getAll = async (req, res) => {
+    try {
+        const prods = await servicesProduct.getProducts();
+        res.sendStatus(200).send(prods);
+    } catch (error) {
+        console.log(`Error: ${error}`);
+    }
+}
 
-export { setProd, deleteProd, detailProd };
+export { setProd, deleteProd, detailProd, getAll };
