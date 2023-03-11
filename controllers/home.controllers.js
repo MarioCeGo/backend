@@ -1,3 +1,4 @@
+import logger from "../logger.js";
 import {  Product } from "../models/index.js";
 
 const goHome = (req, res) => {
@@ -7,7 +8,7 @@ const goHome = (req, res) => {
         }
         res.redirect("/home");
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
@@ -26,7 +27,7 @@ const viewHome = async (req, res) => {
             res.render("home", { prods });
         }
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }

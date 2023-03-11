@@ -1,5 +1,6 @@
 import { servicesProfile } from "../services/index.js";
 import { User, Product } from "../models/index.js";
+import logger from "../logger.js";
 
 const goToProfile = (req, res) => {
     res.redirect("profile/account");
@@ -10,7 +11,7 @@ const viewAccount = async (req, res) => {
         const { user, username } = await getDataUser(req);
         res.render("profile/account", { user, username });
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
@@ -27,7 +28,7 @@ const viewPurchases = async (req, res) => {
             res.render("profile/purchases", { user, username, orderID });
         }
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
@@ -37,7 +38,7 @@ const viewSettings = async (req, res) => {
         const { user, username } = await getDataUser(req);
         res.render("profile/settings", { user, username });
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
@@ -53,7 +54,7 @@ const viewProducts = async (req, res) => {
             res.redirect("profile");
         }
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }

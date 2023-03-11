@@ -8,6 +8,9 @@ class UserDao {
     async getInfoBill(id) {
         return new UserDto(await this.model.findById(id));
     }
+    async getAll() {
+        return new UserDto(await this.model.find().lean());
+    }
 }
 
 const userDao = new UserDao(User);

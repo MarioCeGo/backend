@@ -1,3 +1,4 @@
+import logger from "../logger.js";
 import { servicesCart } from "../services/index.js";
 
 const addItem = async (req, res) => {
@@ -7,7 +8,7 @@ const addItem = async (req, res) => {
         req.session.cart = await servicesCart.addToCart(code, cart);
         res.redirect("/products/view");
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 
@@ -19,7 +20,7 @@ const removeItem = async (req, res) => {
         await servicesCart.removeFromCart(code, cart);
         res.redirect("/cart");
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
@@ -35,7 +36,7 @@ const checkout = async (req, res) => {
             res.redirect("/user");
         }
     } catch (error) {
-        console.log(`Error ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
@@ -50,7 +51,7 @@ const viewCart = async (req, res) => {
             res.redirect("user");
         }
     } catch (error) {
-        console.log(`Error: ${error}`);
+        logger.error(`Error: ${error}`);
         res.status(500);
     }
 }
