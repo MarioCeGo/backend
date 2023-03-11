@@ -15,13 +15,100 @@
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-evenly;
+            a{
+                font-weight: bold;
+            }
+        }
+    }
+    &-home{
+        display: flex;
+        flex-direction: column;
+        .a_banner{
+            margin-bottom: 50px;
+        }
+        &-banner-iphone{
+            height: 700px;
+            background-image: url("https://www.apple.com/v/home/ay/images/heroes/iphone-14-pro/hero_iphone14pro__e5xbgo5ffhg2_largetall.jpg");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            // padding-left: 150px;
+            // padding-right: 150px;
+            position: relative;
+            div{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 100px;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                h2{
+                    color: white;
+                    font-size: 42px;
+                }
+            }
+        }
+        &-banner-watch{
+            height: 700px;
+            background-image: url("https://www.apple.com/v/home/ay/images/heroes/apple-watch-series-8/hero_apple_watch_series_8__bjc1ok5mkjua_largetall.jpg");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            // padding-left: 150px;
+            // padding-right: 150px;
+            position: relative;
+            div{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 100px;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                h2{
+                    color: white;
+                    font-size: 42px;
+                }
+            }
+        }
+        &-banner-mac{
+            height: 700px;
+            background-image: url("https://www.apple.com/v/home/ay/images/promos/macbook-pro-14-and-16/promo_mbp__ek7p477bkp6q_large.jpg");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            // padding-left: 150px;
+            // padding-right: 150px;
+            position: relative;
+            div{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 100px;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                h2{
+                    color: white;
+                    font-size: 42px;
+                }
+            }
         }
     }
 
     &-content {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
         height: 100%;
         padding-left: 150px;
@@ -29,12 +116,16 @@
     }
 
     &-user {
-        display: flex;
-        align-items: center;
-
+        a{
+            display: flex;
+            align-items: center;
+        }
         img {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 0px;
+            padding: 4px;
         }
 
         &-info {

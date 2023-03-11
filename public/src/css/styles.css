@@ -25,6 +25,46 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield; }
 
+/* total width */
+body::-webkit-scrollbar {
+  background-color: #fff;
+  width: 16px; }
+
+/* background of the scrollbar except button or resizer */
+body::-webkit-scrollbar-track {
+  background-color: #fff; }
+
+/* scrollbar itself */
+body::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 16px;
+  border: 4px solid #fff; }
+
+/* set button(top and bottom of the scrollbar) */
+body::-webkit-scrollbar-button {
+  display: none; }
+
+::-webkit-scrollbar {
+  /* entire scrollbar scope */ }
+
+::-webkit-scrollbar-button {
+  /* directional buttons at the top and bottom of the scrollbar */ }
+
+::-webkit-scrollbar-track {
+  /* space below the scrollbar */ }
+
+::-webkit-scrollbar-track-piece {
+  /* not covered area by the scrollbar-thumb */ }
+
+::-webkit-scrollbar-thumb {
+  /* draggable scrollbar itself */ }
+
+::-webkit-resizer {
+  /* resizser at the bottom of the scrollbar */ }
+
+::-webkit-scrollbar-corner {
+  /* bottom of the scrollbar without resizse */ }
+
 .container-nav {
   display: flex;
   width: 100%;
@@ -40,60 +80,137 @@ input[type=number] {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-evenly; }
+    .container-nav-options a {
+      font-weight: bold; }
+
+.container-home {
+  display: flex;
+  flex-direction: column; }
+  .container-home .a_banner {
+    margin-bottom: 50px; }
+  .container-home-banner-iphone {
+    height: 700px;
+    background-image: url("https://www.apple.com/v/home/ay/images/heroes/iphone-14-pro/hero_iphone14pro__e5xbgo5ffhg2_largetall.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; }
+    .container-home-banner-iphone div {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+      .container-home-banner-iphone div h2 {
+        color: white;
+        font-size: 42px; }
+  .container-home-banner-watch {
+    height: 700px;
+    background-image: url("https://www.apple.com/v/home/ay/images/heroes/apple-watch-series-8/hero_apple_watch_series_8__bjc1ok5mkjua_largetall.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; }
+    .container-home-banner-watch div {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+      .container-home-banner-watch div h2 {
+        color: white;
+        font-size: 42px; }
+  .container-home-banner-mac {
+    height: 700px;
+    background-image: url("https://www.apple.com/v/home/ay/images/promos/macbook-pro-14-and-16/promo_mbp__ek7p477bkp6q_large.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; }
+    .container-home-banner-mac div {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+      .container-home-banner-mac div h2 {
+        color: white;
+        font-size: 42px; }
 
 .container-content {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
   height: 100%;
   padding-left: 150px;
   padding-right: 150px; }
 
-.container-user {
+.container-user a {
   display: flex;
   align-items: center; }
-  .container-user img {
-    width: 24px;
-    height: 24px; }
-  .container-user-info {
-    margin-top: 50px;
-    padding-left: 15px;
-    grid-area: userInfo;
-    display: grid;
-    grid-template-areas: "title title" "name lastName" "address age" "phoneNumber email" "password password"; }
-    .container-user-info h2 {
-      grid-area: title; }
-    .container-user-info div {
-      display: flex; }
-    .container-user-info p span {
-      font-weight: bold; }
-  .container-user-products {
-    margin-top: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 15px;
-    display: grid;
-    grid-template-areas: "title" "profileProdNav" "prodContent";
-    grid-template-rows: 50px 50px auto; }
-    .container-user-products h2 {
-      grid-area: title; }
-    .container-user-products-nav {
-      grid-area: profileProdNav;
-      display: flex;
-      justify-content: space-evenly; }
-    .container-user-products-content {
-      grid-area: prodContent;
-      max-height: 670px;
-      overflow-y: scroll; }
-  .container-user-purchase {
-    margin-top: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 15px;
-    display: grid;
-    grid-template-areas: "title" "orderID" "orderItems";
-    grid-template-rows: 50px 50px auto; }
+
+.container-user img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0px;
+  padding: 4px; }
+
+.container-user-info {
+  margin-top: 50px;
+  padding-left: 15px;
+  grid-area: userInfo;
+  display: grid;
+  grid-template-areas: "title title" "name lastName" "address age" "phoneNumber email" "password password"; }
+  .container-user-info h2 {
+    grid-area: title; }
+  .container-user-info div {
+    display: flex; }
+  .container-user-info p span {
+    font-weight: bold; }
+
+.container-user-products {
+  margin-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-areas: "title" "profileProdNav" "prodContent";
+  grid-template-rows: 50px 50px auto; }
+  .container-user-products h2 {
+    grid-area: title; }
+  .container-user-products-nav {
+    grid-area: profileProdNav;
+    display: flex;
+    justify-content: space-evenly; }
+  .container-user-products-content {
+    grid-area: prodContent;
+    max-height: 670px;
+    overflow-y: scroll; }
+
+.container-user-purchase {
+  margin-top: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-areas: "title" "orderID" "orderItems";
+  grid-template-rows: 50px 50px auto; }
 
 .container-cart {
   display: flex;

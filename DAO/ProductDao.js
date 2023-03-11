@@ -4,6 +4,9 @@ class ProductDao {
     constructor(model) {
         this.model = model;
     }
+    async getAll() {
+        return await this.model.find().lean();
+    }
     async getByCode(code) {
         return await this.model.findOne(code);
     }

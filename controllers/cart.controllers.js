@@ -5,7 +5,7 @@ const addItem = async (req, res) => {
         const cart = req.session.cart;
         const code = req.params.code;
         req.session.cart = await servicesCart.addToCart(code, cart);
-        res.redirect("/home");
+        res.redirect("/products/view");
     } catch (error) {
         console.log(`Error: ${error}`);
         res.status(500);
@@ -30,7 +30,7 @@ const checkout = async (req, res) => {
             const user = req.user;
             await servicesCart.buy(cart, user);
             req.session.cart = [];
-            res.redirect("/home");
+            res.redirect("/products/view");
         } else {
             res.redirect("/user");
         }

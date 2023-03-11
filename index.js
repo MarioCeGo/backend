@@ -1,4 +1,4 @@
-import { routerHome, routerCart, routerProfile } from "./router/index.js";
+import { routerHome, routerCart, routerProfile, routerProduct } from "./router/index.js";
 import { Authenticated, IsAdmin } from "./middleware/authenticated.js";
 import { apiCart, apiProduct, apiUser } from "./api/index.js";
 import * as strategy from "./passport/strategy.js";
@@ -58,6 +58,7 @@ app.use(passport.session())
 app.use("/api/products", apiProduct);
 app.use("/api/user", apiUser);
 app.use("/api/cart", apiCart);
+app.use("/products", routerProduct);
 app.use("/profile", routerProfile);
 app.use("/cart", routerCart);
 app.use("/", routerHome);

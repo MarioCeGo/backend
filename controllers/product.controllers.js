@@ -37,4 +37,19 @@ const detailProd = async (req, res) => {
     }
 }
 
-export { setProd, deleteProd, detailProd };
+const productsView = async (req, res) => {
+    try {
+        const prods = await servicesProduct.getAllProds();
+        if (req.user) {
+            const user = req.user;
+            const { username } = user;
+            res.render("products", { prods, username });
+        } else {
+            res.render("products", { prods });
+        }
+    } catch (error) {
+        console.log(`Error: ${error}`);
+    }
+}
+
+export { setProd, deleteProd, detailProd, productsView };
