@@ -21,6 +21,11 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 
+import { graphqlHTTP } from "express-graphql";
+import { buildSchema } from "graphql";
+import { productDao } from "./DAO/ProductDao.js";
+
+
 dotenv.config();
 MonogDB.init();
 
@@ -66,6 +71,66 @@ app.use("/", routerHome);
 app.use("/user", Authenticated, (req, res) => {
     res.render("user");
 });
+
+const schema = buildSchema(`
+    type Product {
+        id: ID!
+        name: String,
+        description: String,
+        code: String,
+        thumbnail: String,
+        price: Int,
+        stock: Int,
+        timeStamp: String
+    }
+    input ProductInput {
+        name: String,
+        description: String,
+        code: String,
+        thumbnail: String,
+        price: Int,
+        stock: Int,
+        timeStamp: String
+    }
+    type Query {
+        getProds(key: String, value: String): [Product]
+      }
+      type Mutation {
+        updateProd(code: ID!, data: ProductInput): Product,
+        saveProd(data: ProductInput): Product
+      }
+`)
+
+const getProds = async () => {
+    const prod = await productDao.getAll();
+    return prod;
+}
+
+const saveProd = async ({ data }) => {
+    const newProd = await productDao.save(data);
+    return newProd
+}
+
+const updateProd = async ({ code, data }) => {
+    const updProd = await productDao.updateProd(code, data)
+    return updProd
+}
+
+app.use(
+    '/graphql',
+    graphqlHTTP({
+        schema: schema,
+        rootValue: {
+            getProds,
+            saveProd,
+            updateProd
+        },
+        graphiql: true,
+    })
+)
+app.get("/tarea", (req, res) => {
+    res.render("tarea")
+})
 
 passport.use("login", new Strategy({ passReqToCallback: true }, strategy.login));
 passport.use("signIn", new Strategy({ passReqToCallback: true }, strategy.signIn));

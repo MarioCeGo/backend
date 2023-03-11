@@ -11,13 +11,13 @@ class ProductDao {
         return await this.model.findOne(code);
     }
     async save(prod) {
-        await this.model.create(prod);
+        return await this.model.create(prod);
     }
     async deleteProd(code) {
         await this.model.deleteOne({ code: code });
     }
     async updateProd(code, newProd) {
-        await this.model.updateOne({ code: code }, newProd);
+        return await this.model.updateOne({ code: code }, newProd);
     }
 }
 
