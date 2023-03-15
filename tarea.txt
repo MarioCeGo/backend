@@ -1,4 +1,0 @@
-En el archivo logger esta la configuracion del log4js, y en los controllers
-lo agregue en los try catch
-Luego la parte de compresion esta en el arhivo index.js de la linea (84-99)
-y la prueba con el artillery esta en el result.txt

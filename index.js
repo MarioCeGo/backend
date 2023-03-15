@@ -11,7 +11,6 @@ import { Strategy } from "passport-local";
 import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 import session from "express-session";
-import compression from "compression";
 import { fork } from "child_process";
 import { fileURLToPath } from "url";
 import { config } from "process";
@@ -31,7 +30,7 @@ MonogDB.init();
 
 if (cluster.isPrimary) {
     const numCPUs = cpus().length
-    for (let i = 0; i < numCPUs; i++) {
+    for (let i = 0; i < 2; i++) {
         cluster.fork()
     }
     cluster.on('exit', worker => {
@@ -81,22 +80,10 @@ if (cluster.isPrimary) {
         res.render("user");
     });
     
-    app.get("/infoC", compression(), async (req, res) => {
-        res.send(tareaGZIP())
+    app.get('/info',(req,res)=>{
+        const fecha=new Date().toLocaleDateString()
+        res.send(`Servidor express en (${PORT}) - PID (${process.pid}) - (${fecha}) xD `)
     })
-    app.get("/info", async (req, res) => {
-        res.send(tareaGZIP())
-    })
-    const tareaGZIP = async () => {
-        const prod = await productDao.getAll();
-        let aux = ""
-        prod.forEach(elem => {
-            for (let index = 0; index < 1000; index++) {
-                aux += elem.thumbnail
-            }
-        })
-        return aux
-    }
     app.get("/*", (req, res) => {
         logger.warn("Ruta inexistente");
     })
